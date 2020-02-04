@@ -174,6 +174,16 @@ function App() {
         <Box pad={{ top: "20px", bottom: "20px" }}>
           <Text>Made by Quang Son with ❤</Text>
         </Box>
+
+        <Box pad={{ bottom: "20px" }}>
+          <Text textAlign="center">Tham khảo:</Text>
+          <a
+            href="https://www.wikihow.com/Calculate-Blood-Alcohol-Content-(Widmark-Formula)"
+            target="blank"
+          >
+            How to Calculate Blood Alcohol Content (Widmark Formula)
+          </a>
+        </Box>
       </Box>
     </Grommet>
   );
