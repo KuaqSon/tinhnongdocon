@@ -3,24 +3,49 @@ import { NumberInput } from "grommet-controls";
 import { Box, CheckBox, Select, Button, Form, FormField } from "grommet";
 import { drinks, beers, wines, cups } from "./constants";
 
-export default function InputForm({formValues}) {
+export default function InputForm({ formValues }) {
   const [drinkType, setDrinkType] = useState({ type: "beer", name: "Bia" });
   const [beerType, setBeerType] = useState({});
   const [wineType, setWineType] = useState({});
   const [cupType, setCupType] = useState({});
+  const [sex, setSex] = useState(false);
 
   return (
-    <Box fill align="center" justify="center" pad={{ top: "32px" }}>
+    <Box align="center" justify="center" background="#ffffff" elevation="small" round="small">
       <Form
-        onReset={event => console.log(event)}
-        onSubmit={({ value, touched }) => formValues(value)}
+        // onReset={event => console.log(event)}
+        onSubmit={({ value, touched }) => formValues({ ...value, sex })}
       >
         <Box direction="row-responsive">
           <Box width="medium" pad="medium">
-            <FormField label="Tuổi" name="age" required component={NumberInput} step={1} />
-            <FormField label="Cân Nặng (kg)" name="weight" required component={NumberInput} step={1} />
-            <FormField label="Chiều cao (cm)" name="Chiều cao" required component={NumberInput} step={1} />
-            <FormField name="Giới tính" label="Giới tính">
+            <FormField
+              label="Tuổi"
+              name="age"
+              required
+              component={NumberInput}
+              step={1}
+              defaultValue={1}
+            />
+            <FormField
+              label="Cân Nặng (kg)"
+              name="weight"
+              required
+              component={NumberInput}
+              step={1}
+              defaultValue={1}
+            />
+            <FormField
+              label="Chiều cao (cm)"
+              name="height"
+              required
+              component={NumberInput}
+              step={1}
+              defaultValue={1}
+            />
+            <FormField
+              label="Giới tính"
+              help={<small>Men go the left, because women are always right</small>}
+            >
               <Box
                 direction="row"
                 align="center"
@@ -29,7 +54,7 @@ export default function InputForm({formValues}) {
                 margin={{ top: "10px", bottom: "12px" }}
               >
                 <div>Nam</div>
-                <CheckBox toggle />
+                <CheckBox toggle value={sex} onChange={e => setSex(e.target.checked)} />
                 <div>Nữ</div>
               </Box>
             </FormField>
@@ -37,7 +62,7 @@ export default function InputForm({formValues}) {
           <Box width="medium" pad="medium">
             <FormField
               label="Đồ uống"
-              name="Đồ uống"
+              name="drink"
               required
               component={Select}
               options={drinks}
@@ -50,7 +75,7 @@ export default function InputForm({formValues}) {
               <>
                 <FormField
                   label="Hãng bia"
-                  name="Hãng bia"
+                  name="beer"
                   required={drinkType.type === "beer"}
                   component={Select}
                   options={beers}
@@ -58,7 +83,6 @@ export default function InputForm({formValues}) {
                   onChange={({ option }) => setBeerType(option)}
                   labelKey="name"
                   valueKey="name"
-                  name="Hãng bia"
                 />
               </>
             )}
@@ -66,7 +90,7 @@ export default function InputForm({formValues}) {
               <>
                 <FormField
                   label="Loại rượu"
-                  name="Loại rượu"
+                  name="wine"
                   required={drinkType.type === "beer"}
                   component={Select}
                   options={wines}
@@ -77,7 +101,7 @@ export default function InputForm({formValues}) {
                 />
                 <FormField
                   label="Loại ly"
-                  name="Loại ly"
+                  name="cup"
                   required={drinkType.type === "beer"}
                   component={Select}
                   options={cups}
@@ -88,8 +112,22 @@ export default function InputForm({formValues}) {
                 />
               </>
             )}
-            <FormField label="Số lượng (lon/ly)" name="Số lượng" required component={NumberInput} step={1} />
-            <FormField label="Thời gian (phút)" name="Thời gian" required component={NumberInput} step={1} />
+            <FormField
+              label="Số lượng (lon/ly)"
+              name="amount"
+              required
+              component={NumberInput}
+              step={1}
+              defaultValue={1}
+            />
+            <FormField
+              label="Thời gian (phút)"
+              name="time"
+              required
+              component={NumberInput}
+              step={1}
+              defaultValue={1}
+            />
           </Box>
         </Box>
 
