@@ -34,6 +34,20 @@ function App() {
     );
   };
 
+  const convertMinusToHour = mins => {
+    if (mins == null) {
+      return "";
+    }
+    if (mins <= 0) {
+      return "";
+    }
+    var hours = Math.floor(mins / 60);
+    var minutes = mins % 60;
+    var hour = hours > 0 ? hours + " tiếng " : "";
+    var min = minutes > 0 ? minutes + " phút" : "";
+    return hour + min;
+  };
+
   const Result = ({ alcohol }) => {
     return (
       <>
@@ -73,7 +87,7 @@ function App() {
               <Text textAlign="center">
                 Nghỉ ngơi ít nhất{" "}
                 <Text weight="bold" size="large">
-                  {alcohol.minutesToOhFive} phút
+                  {convertMinusToHour(alcohol.minutesToOhFive)}
                 </Text>{" "}
                 rồi lên đường thông chốt nhé người anh em thiện lành!!!
               </Text>
