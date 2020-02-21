@@ -127,6 +127,7 @@ export default function InputForm({ formValues }) {
               component={NumberInput}
               step={1}
               defaultValue={1}
+              help={<small>Tính từ lúc uống hết giọt cuối cùng</small>}
             />
           </Box>
         </Box>
